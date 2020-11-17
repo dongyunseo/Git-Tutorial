@@ -1,0 +1,93 @@
+table#cartList {
+	border-collapse: collapse;
+	border-top: 1px solid #333;
+	border: 1px solid #d7d5d5;
+	width: 100%;
+	margin-bottom: 20px;
+	margin: auto;
+	color: #999;
+	font-weight: normal;
+	font-size: 11px;
+	margin-bottom: 150px;
+}
+
+table#cartList th {
+	background-color: #263343;
+	color: white;
+	padding: 10px;
+}
+
+table#cartList th, td {
+	border-bottom: 1px solid #d7d5d5;
+	text-align: center;
+}
+
+#cartList .img_thumb {
+	text-align: center;
+	width: 100px;
+	height: 100px;
+}
+
+#dressimg {
+	height: 80px;
+	padding: 9px;
+}
+
+#dressimg img {
+	width: 80px;
+	height: 80px;
+}
+
+#delete {
+	color: #999;
+	font-weight: normal;
+	font-size: 11px;
+}
+
+#order {
+	color: #999;
+	font-weight: normal;
+	font-size: 11px;
+}
+
+#shopping_cart_list {
+	font-size: 13px;
+	text-align: center;
+	padding: 50px;
+	margin: auto;
+	color: #66;
+	font-weight: bold;
+}
+
+#cart_name {
+	font-size: 13px;
+	text-align: center;
+	padding: 50px;
+	margin: auto;
+	color: #66;
+	font-weight: bold;
+}
+
+#State {
+	width: 100%;
+	padding-top: 50px;
+	text-align: center;
+	padding-bottom: 50px;
+	background-color: #EAEAEA;
+}
+
+#State img {
+	width: 100%;
+}
+
+@media screen and (min-width: 900px) {
+	#State img {
+		width: 900px;
+	}
+}
+
+@media screen and (min-width: 900px) {
+	table#cartList {
+		width: 900px;
+	}
+}

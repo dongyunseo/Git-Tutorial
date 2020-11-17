@@ -1,0 +1,114 @@
+#one {
+	font-family: Go, Arial, malgun gothic, ¸¼Àº°íµñ, NanumGothic, dotum, µ¸¿ò,
+		sans-serif;
+	font-weight: bold;
+	/* 	background-color: #a4d2f2;*/
+	float: left;
+	height: 80px;
+	width: 100%;
+	background: linear-gradient(to bottom, #a4d2f2, #ffffff);
+}
+
+.Login {
+	font-family: Go, Arial, malgun gothic, ¸¼Àº°íµñ, NanumGothic, dotum, µ¸¿ò,
+		sans-serif;
+	font-weight: bold;
+	height: 80px;
+	line-height: 75px;
+	font-size: 13px;
+	padding: 20px;
+	color: #000;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	margin-left: 10px;
+}
+
+#category {
+	font-family: Go, Arial, malgun gothic, ¸¼Àº°íµñ, NanumGothic, dotum, µ¸¿ò,
+		sans-serif;
+	font-weight: bold;
+	width: 1200px;
+	height: 100px;
+	margin: auto;
+	padding-top: 150px;
+}
+
+
+
+#cate {
+	width: 220px;
+	height: 20px;
+	margin: auto;
+	float: left;
+	text-align: center;
+	padding: 15px 5px;
+}
+
+.m_name {
+	font-size: 12px;
+	font-weight: normal;
+	color: #777;
+}
+
+#Search {
+	height: 40px;
+	width: 400px;
+	border: 1px solid #1b5ac2;
+	background: #ffffff;
+	margin-top: -54px;
+}
+
+#Search2 {
+	height: 40px;
+	width: 400px;
+	border: 1px solid #1b5ac2;
+	background: #ffffff;
+	margin: auto;
+}
+
+#search_engine {
+	font-size: 12px;
+	width: 325px;
+	padding: 10px;
+	border: 0px;
+	outline: none;
+	float: left;
+}
+
+button {
+	height: 100%;
+	border: 0px;
+	background: #1b5ac2;
+	outline: none;
+	float: right;
+	color: #ffffff;
+}
+
+#submitFrm {
+	width: 325px;
+	height: 50px;
+	margin-left: 70%;
+	margin-top: -38px;
+}
+
+#idLogin1 {
+	padding: 20px;
+	font-size: 13px;
+	color: #000;
+	margin-top: -40px;
+}
+
+#idLogin2 {
+	padding: 20px;
+	font-size: 13px;
+	color: #000;
+	margin-top: 6px;
+}
+
+#cartlist1 {
+	width: 100px;
+	height: 50px;
+}

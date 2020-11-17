@@ -1,0 +1,129 @@
+a{
+	text-decoration: none;
+	font-size: 15px;
+    color: #555;
+}
+
+#Admin {
+	text-align: center;
+}
+
+#Admincategory {
+	font-family: Go, Arial, malgun gothic, 留묒�怨좊뵓, NanumGothic, dotum, �룍��,
+		sans-serif;
+	font-weight: bold;
+	width: 1000px;
+	height: 100px;
+	margin: auto;
+}
+
+#OrderList {
+	padding-top: 50px;
+	text-align: center;
+	padding-bottom: 150px;
+}
+
+hr.RLine {
+	width: 271px;
+	text-align: left;
+	margin: auto;
+	margin-left: -10px
+}
+
+#ReviewList {
+	font-size: 12px;
+	text-align: center;
+	padding: 30px;
+	margin: auto;
+	color: #999;
+	margin-bottom: -20px;
+}
+
+.reivew_img img {
+	width: 200px;
+	height: 200px;
+}
+
+.reivew_box {
+	margin: auto;
+	height: 100%;
+	width: 1000px;
+	display: flex;
+}
+
+.reivew_list {
+	place-content: center;
+	padding-left: 0;
+}
+
+.reivew_list li {
+	padding: 5px 66px;
+}
+
+.reivew_name {
+	font-size: 12px;
+	text-align: center;
+	color: #999;
+}
+
+.reivew_title {
+	font-size: 12px;
+	text-align: center;
+	color: #999;
+}
+
+.PageNumber {
+	display: flex;
+	place-content: center;
+	padding-left: 0;
+}
+
+.PageNumber li:hover {
+	background-color: #d49466;
+	border-radius: 8px;
+}
+
+ul li {
+	list-style: none;
+	padding: 8px 15px;
+}
+
+@media screen and (max-width: 1000px) {
+	.reivew_box {
+		width: 924px;
+	}
+	.reivew_img img {
+		width: 160px;
+		height: 180px;
+	}
+	.reivew_list li {
+		padding: 5px 65.5px;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	#Img {
+		margin-left: 60px;
+		padding-bottom: 40px;
+	}
+	table#Qlist {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 769px) {
+	.reivew_box {
+		width: 100%;
+	}
+	.reivew_list {
+		width: 646px;
+	}
+	.reivew_img img {
+		width: 150px;
+		height: 150px;
+		padding-left: 10px;
+	}
+	.reivew_list li {
+		padding: 10px 20px;
+	}
+}

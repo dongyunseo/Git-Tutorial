@@ -1,0 +1,56 @@
+.dressimg img {
+	width: 280px;
+}
+
+ul li {
+	list-style: none;
+}
+
+.listbox {
+	font-family: Go, Arial, malgun gothic, ¸¼Àº°íµñ, NanumGothic, dotum, µ¸¿ò,
+		sans-serif;
+	font-weight: bold;
+	padding-right: 30px;
+	text-align: center;
+	display: flex;
+	flex-flow: wrap;
+}
+
+h3 {
+	padding-bottom: 50px;
+	padding-top: 50px;
+	width: 100%;
+	text-align: center;
+}
+
+.Nothing {
+	text-align: center;
+	padding-bottom: 200px;
+	padding-top: 100px;
+}
+
+@media screen and (max-width: 800px) {
+	.listbox img {
+		width: 180px;
+	}
+	
+	
+}
+
+@media screen and (max-width: 1000px) {
+	.listbox img {
+		width: 230px;
+	}
+	.listbox {
+		place-content: center;
+	}
+}
+
+@media screen and (min-width: 1001px) {
+	.listbox {
+		width: 1000px;
+		height: 100%;
+		margin: auto;
+		padding-bottom: 100px;
+	}
+}

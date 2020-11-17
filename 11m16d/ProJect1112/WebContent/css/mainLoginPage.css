@@ -1,0 +1,86 @@
+.container {
+	width: 500px;
+	margin: 40px auto;
+	line-height: 16px;
+	padding-top: 200px;
+	padding-bottom: 200px;
+}
+
+h5 {
+	text-align: center;
+}
+
+h5 span {
+	color: teal;
+}
+
+#signup {
+	background-color: #a4d2f2;
+	color: white;
+	border: 0;
+	border-radius: 5px;
+	padding: 10px 230px;
+}
+
+.bottom input {
+	background-color: white;
+	border: 0;
+	color: teal;
+	font-size: 16px;
+}
+
+input {
+	border: 1px solid lightgray;
+	border-radius: 3px;
+}
+
+#foidpw {
+	border: 0;
+	border-radius: 5px;
+	float: left;
+	color: black;
+	background: white;
+	padding: 5px 85px;
+}
+
+#login_but {
+	height: 30px;
+	width: 495px
+}
+
+#Admin {
+	width: 100%;
+	text-align: center;
+}
+
+#AdminLogin {
+	border: 0;
+	border-radius: 5px;
+	color: black;
+	background: white;
+}
+
+@media screen and (max-width: 800px) {
+	.container {
+		width: 320px;
+		margin: 40px auto;
+		line-height: 16px;
+		padding-top: 200px;
+		padding-bottom: 200px;
+	}
+	#login_but {
+		width: 320px;
+	}
+	#signup {
+		background-color: #a4d2f2;
+		color: white;
+		border-radius: 5px;
+		padding: 10px 143px;
+	}
+	#foidpw {
+		width: 320px;
+	}
+	#Admin {
+		width: 320px;
+	}
+}

@@ -1,0 +1,89 @@
+#dressimg {
+	float: left;
+}
+
+#dressimg img {
+	width: 441px;
+	height: 441px;
+}
+
+#dressname {
+	font-family: Go, Arial, malgun gothic,
+		�솾�꺂�뒧占쎈뎐嶺뚣끇커占쎌맶�뜝�럥�몶占쎈쐻占쎈쑆泳�怨��렭癰귨퐦�삕占쎈섣占쎌굲, NanumGothic, dotum,
+		�뜝�럥�맶�뜝�럥�쑅嶺뚯빘沅랃옙�맶�뜝�럥吏쀥뜝�럩援�, sans-serif;
+	font-weight: bold;
+	color: #888;
+	width: 385px;
+	height: 50px;
+	float: left;
+	margin-left: 35px;
+}
+
+#totalp {
+	background-color: transparent;
+	border: 0 solid black;
+	text-align: right;
+	size
+	=11;
+}
+
+#totalprice {
+	font-family: Go, Arial, malgun gothic,
+		�솾�꺂�뒧占쎈뎐嶺뚣끇커占쎌맶�뜝�럥�몶占쎈쐻占쎈쑆泳�怨��렭癰귨퐦�삕占쎈섣占쎌굲, NanumGothic, dotum,
+		�뜝�럥�맶�뜝�럥�쑅嶺뚯빘沅랃옙�맶�뜝�럥吏쀥뜝�럩援�, sans-serif;
+	font-weight: bold;
+	color: #888;
+	width: 250px;
+	height: 50px;
+	float: left;
+	margin-left: 130px;
+	margin-top: 100px;
+}
+
+#price {
+	font-family: Go, Arial, malgun gothic,
+		�솾�꺂�뒧占쎈뎐嶺뚣끇커占쎌맶�뜝�럥�몶占쎈쐻占쎈쑆泳�怨��렭癰귨퐦�삕占쎈섣占쎌굲, NanumGothic, dotum,
+		�뜝�럥�맶�뜝�럥�쑅嶺뚯빘沅랃옙�맶�뜝�럥吏쀥뜝�럩援�, sans-serif;
+	font-weight: bold;
+	width: 385px;
+	height: 50px;
+	float: left;
+	text-align: right;
+}
+
+#dress {
+	margin: auto;
+	width: 1250px;
+	height: 500px;
+	margin-top: 150px;
+	padding-bottom: 150px;
+}
+
+hr.lineone {
+	width: 770px;
+	border-bottom: 3px;
+	text-align: left;
+	margin-right: 5px;
+}
+
+#detilButton {
+	font-family: Go, Arial, malgun gothic,
+		�솾�꺂�뒧占쎈뎐嶺뚣끇커占쎌맶�뜝�럥�몶占쎈쐻占쎈쑆泳�怨��렭癰귨퐦�삕占쎈섣占쎌굲, NanumGothic, dotum,
+		�뜝�럥�맶�뜝�럥�쑅嶺뚯빘沅랃옙�맶�뜝�럥吏쀥뜝�럩援�, sans-serif;
+	font-weight: bold;
+	background-color: #a4d2f2;
+	color: white;
+	border: 0;
+	border-radius: 5px;
+	padding: 7px 100px;
+	margin-left: 280px;
+	margin-top: 80px;
+}
+
+#FABRIC {
+	text-align: center;
+	font-size: 11px;
+	color: rgb(53, 53, 53);
+	font-family: tahoma, Dotum, Arial, "Malgun Gothic", Dotum, AppleGothic,
+		sans-serif;
+}

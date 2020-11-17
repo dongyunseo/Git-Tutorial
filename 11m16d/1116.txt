@@ -1,0 +1,306 @@
+-- 관리자 테이블 
+create table admin(
+    id          varchar2(20) primary key,
+    pwd         varchar2(20)
+);
+insert into admin values('adminid','adminpwd');
+
+-- 고객 테이블
+create table customer(    
+    id         varchar2(50)  primary key,
+    pwd        varchar2(50),     
+    name       varchar2(50),
+    email      varchar2(50),
+    zip_num    varchar2(50),
+    address    varchar2(150),
+    phone      varchar2(50),
+    useyn      char(1)       default 'y',
+    indate     date          default sysdate
+);
+
+-- 직원 테이블
+create table member(
+    name varchar(100),
+	userid varchar(100),
+	pwd varchar(100),
+	email varchar(100),
+	phone varchar(100),
+	admin number(1)
+);
+
+-- 물품 테이블
+create table dress(
+    dressId number(10) PRIMARY KEY,      	 
+    dressName varchar2(300), 	
+    categoryId number(10),   	
+    price number(10),     
+    companyID varchar2(50), 	
+    amount number(5),       	
+    dressimg varchar2(300)
+);
+
+-- Q&A 테이블 
+create table tbl_QANDA(
+    qandaid number(20) PRIMARY KEY not null,
+    qandatitle varchar2(100),
+    qandacontent varchar2(1000),
+    qandadate date          default sysdate,
+    qandareply varchar2(500),
+    id varchar2(20),
+    dressid number(20)
+);
+create sequence tbl_QANDA_seq;
+
+-- 주문 테이블
+create table tbl_order(
+    ordernum    number(20) PRIMARY KEY not null,
+    id          varchar2(50),
+    dressId         number(10) not null,   
+    dressname   varchar2(50),
+    dressimg    varchar2(300),
+    price       number(10),
+    amount      number(3),
+    sum         number(10),
+    ordername   varchar2(30),
+    address     varchar2(300),
+    phone       varchar2(30),
+    email       varchar2(100),
+    orderMessage    varchar2(300),
+    depositor   varchar2(50),
+    Bank        varchar2(100),
+    delivery    varchar2(50),        -- 입금 전, 입금 후, 배송 중, 배송 완료
+    orderDate   date          default sysdate
+    );
+    -- 주문테이블 시쿼스
+create sequence tbl_order_seq;
+
+-- 장바구니 테이블
+create table tbl_cart(
+    cartnum         number(10) PRIMARY KEY not null,
+    id              varchar2(20) not null,
+    dressId         number(10) not null,
+    dressName       varchar2(300), 	
+    amount       number(20),
+    price           number(20),
+    sum             number(20),
+    addDate         date  default sysdate
+);
+-- 장바구니이블 시쿼스
+create sequence tbl_cart_seq;
+
+-- 리뷰 테이블 
+create table review(
+    reviewnumber    number(10) Primary key not null,
+    dressId number(10),   
+    dressname varchar2(50),
+    id      varchar2(20),
+    reviewtitle     varchar2(50),
+    reviewcontent   varchar2(1000),
+    reviewimg       varchar2(100),
+    reviewscore     varchar2(100),
+    reviewDate      date  default sysdate
+);
+-- 리뷰 넘버 시퀀스
+create sequence review_seq;
+--select
+select * from customer;
+select * from dress;
+select * from tbl_cart; 
+select * from tbl_order;
+select * from review order by reviewDate desc;
+select * from tbl_order order by ordernum desc;
+select * from dress where dressname like '%바지%';
+
+select count(reviewnumber) bCount from review where dressid='2';
+
+--리뷰 한페이지당 3개 리뷰 출력 10월 24일  select * from (새로운 테이블이 생성rownum m 을 고정값을 만들어줘야함)
+--select * from (select rownum m,reviewnumber,dressId,dressname,id,reviewtitle,reviewcontent,reviewimg,reviewscore,reviewDate 
+--from review 
+--where rownum <=최대값 보여질 페이지에 마지막 데이터
+--order by reviewnumber desc)
+--where m>=최소값; 보여질 페이지에 첫번째 데이터
+-- 2페이지 한페이지 데이터 수 3개
+-- 1번~3번 출력  1*3 == 1페이지에 3개 출력
+--where m>=(1-1)*3+1; == 1페이지에 1번부터 출력
+--where rownum <=1*3
+--order by reviewnumber desc)
+--where m>=(1-1)*3+1;
+-- 4번~6번 출력 2*3 == 2페이지에 3개를 출력
+--where m>=(2-1)*3+1; == 2페이지에 4번부터 출력
+--where rownum <=2*3
+--order by reviewnumber desc)
+--where m>=(2-1)*3+1;
+--https://www.youtube.com/watch?v=niiVycx_4kE&list=PLDnB4kH68X0pMD0jl9hON030OvKaev7dj&index=28 36:33초
+-- 페이징(1*3 = 마지막 데이터) ((1-1)*3+1 = 시작데이터)
+select * 
+from (select ROWNUM as rnum, A.* 
+from (select * from review order by reviewnumber desc) A)
+where rnum <=2*3  and rnum >=(2-1)*3+1 and dressid =1001;
+
+
+-- 주문자 총 주문금액
+
+select id, count(id) "주문한 상품", sum(price) "총 금액" from tbl_order group by id; 
+
+
+select * from(select rownum m,dressid, dressname,categoryid,price,companyid,dressimg 
+from dress where rownum <=1*9
+order by dressid desc)
+where m>=(1-1)*9+1;
+
+
+
+
+
+select count(reviewnumber) bCount from review;
+select * from tbl_order where id='sdy2766'order by orderDate desc;
+select * from review where dressid=1001 and rownum <=6 order by reviewnumber desc;
+select * from tbl_cart where cartnum=96;
+select * from tbl_cart where id='sdy2766';
+select * from tbl_QANDA order by qandaid desc;
+select * from tbl_order order by ordernum desc;
+select * from tbl_order where ordername IS NOT NULL order by ordernum desc;
+select * from tbl_order where id='sdy2766';
+select sum(price) from tbl_order where id='sdy2766';
+select id, count(id) "주문한 상품", sum(price) "총 금액" from tbl_order group by id; 
+select id, count(id) "주문한 상품", sum(price) "총 금액", (price,10000,'브론즈'
+                                                              ,30000,'실버'
+                                                              ,100000,'골드'
+                                                              ,300000,'플레티넘') from tbl_order group by id; 
+
+  select ename, deptno, decode(deptno,10,'accountuing'
+                                    ,20,'research'   
+                                    ,30,'sales'
+                                    ,40,'operations') as dname
+                                        from emp;
+                                        
+
+
+--데이터 존재여부 확인
+SELECT COUNT(*) data
+FROM tbl_order where id='sdy2766' and dressid=14;
+
+--리뷰 작성하기전 주문을 했는지 확인하는 쿼리문 
+select * from tbl_order where id='sdy2766' and dressid='14';
+
+select * from admin;
+select * from review order by reviewnumber desc;
+--delete review where reviewnumber=1;
+select * from tbl_QANDA where qandaid=7;
+--delete tbl_order where ordernum=67;  
+commit;
+
+
+
+select * from tbl_QANDA where qandaid= (SELECT max(qandaid) from tbl_QANDA);
+--  companyID  공급회사아이디 100 물품 개수
+update dress set dressname='셔츠5',price=35000 where dressid=17;
+-- categoryId1 = outer 1= shirts 2= tee 3= bottom 4= acc =5
+-- 물품 정보 
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(1,'스톤 필드자켓',1,105000,'dongyunCompany',100,'img src=''../img/outer/outer1.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(2,'아벨 린넨 자켓',1,49000,'dongyunCompany',100,'img src=''../img/outer/outer2.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(3,'퀼리티 린넨 블레이저',1,79000,'dongyunCompany',100,'img src=''../img/outer/outer3.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(4,'퓨어 아노락',1,48000,'dongyunCompany',100,'img src=''../img/outer/outer4.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(5,'웨어 린넨 블레이져',1,85000,'dongyunCompany',100,'img src=''../img/outer/outer5.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(6,'트라이 아노락 셋트',1,41000,'dongyunCompany',100,'img src=''../img/outer/outer6.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(7,'네이쳐 아노락',1,46000,'dongyunCompany',100,'img src=''../img/outer/outer7.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(8,'써네이 윈드 퍼티그야상',1,78000,'dongyunCompany',100,'img src=''../img/outer/outer8.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(9,'코드 셔츠자켓',1,57000,'dongyunCompany',100,'img src=''../img/outer/outer9.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(10,'프렌치 썸머 블레이져',1,59000,'dongyunCompany',100,'img src=''../img/outer/outer10.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(11,'아웃 후드 아노락',1,69000,'dongyunCompany',100,'img src=''../img/outer/outer11.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(12,'프로젝트 수트세트',1,65000,'dongyunCompany',100,'img src=''../img/outer/outer12.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(13,'셔츠1',2,15000,'dongyunCompany',100,'img src=''../img/shirts/shirts1.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(14,'셔츠2',2,39000,'dongyunCompany',100,'img src=''../img/shirts/shirts2.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(15,'셔츠3',2,39000,'dongyunCompany',100,'img src=''../img/shirts/shirts3.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(16,'셔츠4',2,28000,'dongyunCompany',100,'img src=''../img/shirts/shirts4.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(17,'셔츠5',2,35000,'dongyunCompany',100,'img src=''../img/shirts/shirts5.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(18,'셔츠6',2,21000,'dongyunCompany',100,'img src=''../img/shirts/shirts6.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(19,'셔츠7',2,46000,'dongyunCompany',100,'img src=''../img/shirts/shirts7.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(20,'셔츠8',2,58000,'dongyunCompany',100,'img src=''../img/shirts/shirts8.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(21,'셔츠9',2,27000,'dongyunCompany',100,'img src=''../img/shirts/shirts9.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(22,'셔츠10',2,59000,'dongyunCompany',100,'img src=''../img/shirts/shirts10.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(23,'셔츠11',2,29000,'dongyunCompany',100,'img src=''../img/shirts/shirts11.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(24,'셔츠12',2,35000,'dongyunCompany',100,'img src=''../img/shirts/shirts12.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(25,'티셔츠1',3,12000,'dongyunCompany',100,'img src=''../img/tee/tee1.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(26,'티셔츠2',3,19000,'dongyunCompany',100,'img src=''../img/tee/tee2.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(27,'티셔츠3',3,29000,'dongyunCompany',100,'img src=''../img/tee/tee3.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(28,'티셔츠4',3,38000,'dongyunCompany',100,'img src=''../img/tee/tee4.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(29,'티셔츠5',3,45000,'dongyunCompany',100,'img src=''../img/tee/tee5.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(30,'티셔츠6',3,21000,'dongyunCompany',100,'img src=''../img/tee/tee6.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(31,'티셔츠7',3,26000,'dongyunCompany',100,'img src=''../img/tee/tee7.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(32,'티셔츠8',3,38000,'dongyunCompany',100,'img src=''../img/tee/tee8.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(33,'티셔츠9',3,17000,'dongyunCompany',100,'img src=''../img/tee/tee9.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(34,'티셔츠10',3,29000,'dongyunCompany',100,'img src=''../img/tee/tee10.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(35,'티셔츠11',3,29000,'dongyunCompany',100,'img src=''../img/tee/tee11.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(36,'티셔츠12',3,15000,'dongyunCompany',100,'img src=''../img/tee/tee12.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(37,'바지1',4,45000,'dongyunCompany',100,'img src=''../img/bottom/bottom1.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(38,'바지2',4,29000,'dongyunCompany',100,'img src=''../img/bottom/bottom2.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(39,'바지3',4,39000,'dongyunCompany',100,'img src=''../img/bottom/bottom3.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(40,'바지4',4,28000,'dongyunCompany',100,'img src=''../img/bottom/bottom4.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(41,'바지5',4,45000,'dongyunCompany',100,'img src=''../img/bottom/bottom5.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(42,'바지6',4,21000,'dongyunCompany',100,'img src=''../img/bottom/bottom6.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(43,'바지7',4,26000,'dongyunCompany',100,'img src=''../img/bottom/bottom7.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(44,'바지8',4,38000,'dongyunCompany',100,'img src=''../img/bottom/bottom8.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(45,'바지9',4,27000,'dongyunCompany',100,'img src=''../img/bottom/bottom9.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(46,'바지10',4,29000,'dongyunCompany',100,'img src=''../img/bottom/bottom10.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(47,'바지11',4,39000,'dongyunCompany',100,'img src=''../img/bottom/bottom11.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(48,'바지12',4,35000,'dongyunCompany',100,'img src=''../img/bottom/bottom12.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(49,'미키 폴로캡',5,15000,'dongyunCompany',100,'img src=''../img/acc/acc1.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(50,'로일 체인팔찌',5,19000,'dongyunCompany',100,'img src=''../img/acc/acc2.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(51,'에이미 선글라스',5,19000,'dongyunCompany',100,'img src=''../img/acc/acc3.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(52,'언노운 폴리 캡',5,18000,'dongyunCompany',100,'img src=''../img/acc/acc4.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(53,'마그넷 팔찌',5,15000,'dongyunCompany',100,'img src=''../img/acc/acc5.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(54,'AIKI BEACG 삭스',5,11000,'dongyunCompany',100,'img src=''../img/acc/acc6.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(55,'데일리 가죽 투웨이백',5,16000,'dongyunCompany',100,'img src=''../img/acc/acc7.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(56,'NY 캡',5,18000,'dongyunCompany',100,'img src=''../img/acc/acc8.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(57,'NY 1987 볼캡',5,17000,'dongyunCompany',100,'img src=''../img/acc/acc9.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(58,'미니 크로스 백',5,19000,'dongyunCompany',100,'img src=''../img/acc/acc10.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(59,'인스타 안경',5,16000,'dongyunCompany',100,'img src=''../img/acc/acc11.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(60,'데일리 숏비니',5,12000,'dongyunCompany',100,'img src=''../img/acc/acc12.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(1001,'오클랜드 반팔티',999,20000,'dongyunCompany',100,'<img src=''../img/main/slide1.jpg''>');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(1002,'오클랜드 반팔티',999,20000,'dongyunCompany',100,'<img src=''../img/main/slide2.jpg''>');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(1003,'밝은색 코트',999,20000,'dongyunCompany',100,'<img src=''../img/main/slide3.jpg''>');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(1004,'검정색 코트',999,20000,'dongyunCompany',100,'<img src=''../img/main/slide4.jpg''>');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(10002,'쿠셔닝 레더 슬리퍼',998,15000,'dongyunCompany',100,'img src=''../img/main/middle.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(10003,'불독 방향제',998,15000,'dongyunCompany',100,'img src=''../img/main/middle2.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(10004,'프레쉬 오버 반팔티',998,14000,'dongyunCompany',100,'img src=''../img/main/middle3.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(10005,'셔츠1',997,13000,'dongyunCompany',100,'img src=''../img/mai/nweek1.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(10006,'바지1',997,12000,'dongyunCompany',100,'img src=''../img/mai/nweek2.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(10007,'흰 반팔1',997,11000,'dongyunCompany',100,'img src=''../img/mai/nweek3.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(10008,'흰 반팔2',997,10000,'dongyunCompany',100,'img src=''../img/mai/nweek4.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(10009,'반바지1',997,16000,'dongyunCompany',100,'img src=''../img/mai/nweek5.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(10010,'흰바지1',997,17000,'dongyunCompany',100,'img src=''../img/mai/nweek6.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(10011,'슬랙스1',997,18000,'dongyunCompany',100,'img src=''../img/mai/nweek7.jpg''');
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values(10012,'반바지2',997,19000,'dongyunCompany',100,'img src=''../img/mai/nweek8.jpg''');
+
+
+
+
+
+
+
+-------------------------------------------------------------
+drop table mainpage;
+drop sequence mainpage_seq;
+
+create table mainpage(
+    mainpagenumber number(10) primary key,
+    patimg varchar2(100) not null,
+    dogname varchar2(100)
+);
+create sequence mainpage_seq;
+
+select * from mainpage where dogname='골드 리트리버';
+
+
+insert into mainpage(mainpagenumber,patimg,dogname) VALUES(mainpage_seq.nextval,'<img src=''../mainimg/box1.jpg''>','골드 리트리버');
+insert into mainpage(mainpagenumber,patimg,dogname) VALUES(mainpage_seq.nextval,'<img src=''../mainimg/box2.jpg''>','미니 퍼그');
+insert into mainpage(mainpagenumber,patimg,dogname) VALUES(mainpage_seq.nextval,'<img src=''../mainimg/box3.jpg''>','닥스 훈트');
+insert into mainpage(mainpagenumber,patimg,dogname) VALUES(mainpage_seq.nextval,'<img src=''../mainimg/box4.jpg''>','웰시코기');
+
+commit;
+
+insert into dress (dressid, dressName, categoryId, price, companyID, amount, dressimg)values('img src=''../img/mai/nweek8.jpg''');
+
+
+

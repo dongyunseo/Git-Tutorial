@@ -1,0 +1,114 @@
+<!-- 메인 TOP 슬라이드 -->
+{margin:0;padding:0;}
+    ul,li{
+    list-style:none;
+    display: block;
+    text-align: center;    
+    padding: 0;
+    padding-left: 10px;
+    }
+    .topslide{height:100%;overflow:hidden;width: 1000px;margin: auto}
+    .topslide ul{width:calc(105% * 2);display:flex;animation:topslide 12s infinite;} /* slide를 8초동안 진행하며 무한반복 함 */
+    .topslide li{width:calc(105% / 2);height:100%;}
+    @keyframes topslide {
+      0% {margin-left:0;} /* 0 ~ 10  : 정지 */
+      30% {margin-left:-3%;} /* 10 ~ 25 : 변이 */
+      65% {margin-left:-109%;} /* 25 ~ 35 : 정지 */
+      85% {margin-left:-109%;} /* 35 ~ 50 : 변이 */
+      100% {margin-left:0%;}
+    }
+}
+
+
+
+	
+#ajaxTable {
+	display: block;
+}
+
+#ajaxTable tr {
+	display: block;
+	float: left;
+	text-align-last: center;
+	padding: 20px 20px;
+}
+
+#ajaxTable td {
+	display: block;
+	color: #666;
+}
+
+#ajaxTable a {
+	color: #666;
+	text-decoration: none;
+}
+
+#ajaxTable img {
+	width: 260px;
+}
+
+.table {
+	width: 910px;;
+	margin: auto;
+	margin-top: 20px;
+}    
+.middWeekly{
+	width: 828px;
+    margin: auto;
+    margin-bottom: 70px;
+    margin-top: 45px;
+}
+.listbox{
+    display: flex;
+    flex-flow: wrap;
+    place-content: center;
+    width: 880px;
+
+}
+@media screen and (min-width: 801px) {
+	.topslide img {
+		width: 500px;
+	}
+	.middWeekly img {
+		width: 260px;
+	}
+	.listbox{   
+		margin: auto;
+		padding-right: 10px;
+    }
+    .listbox img {
+		width:250px;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.topslide {
+		height: 100%;
+		overflow: hidden;
+		width: 700px;
+		margin: auto
+	}
+	.topslide img {
+		width: 350px;
+	}
+	#ajaxTable img {
+		width: 220px;
+	}
+	.table{
+	    width: 528px;
+	}
+	.middWeekly img {
+		width: 200px;
+	}
+	.middWeekly {
+		width: 648px;
+	}
+	.listbox {
+		width: 660px;
+    	margin: auto;
+    	padding-right: 15px;
+    }
+	.listbox img {
+		width:200px;
+	}
+}

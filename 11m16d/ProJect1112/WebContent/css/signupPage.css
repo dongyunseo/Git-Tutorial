@@ -1,0 +1,87 @@
+.container {
+	width: 500px;
+	margin: 40px auto;
+	line-height: 16px;
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+h5 {
+	text-align: center;
+}
+
+h5 span {
+	color: teal;
+}
+
+#signup1 {
+	font-family: Go, Arial, malgun gothic, ¸¼Àº°íµñ, NanumGothic, dotum, µ¸¿ò,
+		sans-serif;
+	font-weight: bold;
+	background-color: #a4d2f2;
+	color: white;
+	border: 0;
+	border-radius: 5px;
+	padding: 10px 224px;
+}
+
+.bottom input {
+	background-color: white;
+	border: 0;
+	color: teal;
+	font-size: 16px;
+}
+
+#imail {
+	position: absolute;
+	top: 110px;
+	margin: 0 470px;
+}
+
+#iperson1 {
+	position: absolute;
+	top: 160px;
+	margin: 0 470px;
+}
+
+#iperson2 {
+	position: absolute;
+	top: 210px;
+	margin: 0 470px;
+}
+
+#ipw {
+	position: absolute;
+	top: 260px;
+	margin: 0 470px;
+}
+
+input {
+	border: 1px solid lightgray;
+	border-radius: 3px;
+}
+
+#join_text_box {
+	height: 30px;
+	width: 495px
+}
+
+.join_text_box {
+	height: 30px;
+	width: 495px
+}
+
+@media screen and (max-width: 800px) {
+	.container {
+		width: 320px;
+	}
+	#join_text_box {
+		width: 320px;
+	}
+	.join_text_box {
+		width: 320px;
+	}
+	#signup1 {
+		padding: 10px 143px;
+	}
+}
